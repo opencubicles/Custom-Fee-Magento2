@@ -25,7 +25,7 @@ define([
             if (this.totals() && totals.getSegment('fee')) {
                 price = totals.getSegment('fee').value;
             }
-            return price;
+            return priceUtils.formatPrice(price, quote.getPriceFormat());
         }
     });
 });
