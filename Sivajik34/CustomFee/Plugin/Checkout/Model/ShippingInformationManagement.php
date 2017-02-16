@@ -38,17 +38,26 @@ class ShippingInformationManagement
         \Magento\Checkout\Api\Data\ShippingInformationInterface $addressInformation
     )
     {
-        $customFee = $addressInformation->getExtensionAttributes()->getFee();
+
+        $extensionAttributes = $addressInformation->getExtensionAttributes();
+
+        if($extensionAttributes)
+            $customFee = intval($extensionAttributes->getFee());
+        else
+            $customFee =  NULL;
+
         $quote = $this->quoteRepository->getActive($cartId);
         $totals = $quote->getTotals();
         $subtotal = $totals['subtotal']->getValue();
         if ($customFee) {
 
             // $fee = $this->dataHelper->getCustomFee();
-            if($customFee == 1)
+            if($customFee == 1) {
                 $fee = $subtotal/10;
-            else if($customFee == 2)
+            }     
+            else if($customFee == 2) {
                 $fee = $this->dataHelper->getCustomFee();
+            }
 
             $quote->setFee($fee);
 
