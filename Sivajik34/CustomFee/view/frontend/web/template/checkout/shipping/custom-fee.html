@@ -1,5 +1,15 @@
 <div data-bind="visible: canVisibleCustomFeeBlock">
-    <input type="checkbox" name="custom-fee" value="custom-fee"/>
-    <span data-bind="text: getFormattedPrice()" class="price" style="font-weight: 600"></span>
-    <span data-bind="text: getFeeLabel()"></span>
+
+	<strong>Driver Tip: </strong>
+	<select name="custom-fee" style="width:200px;">
+		<option value="1" selected="selected">10% (recommended)</option>
+		<option value="2">CAD$2.50</option>
+	</select>
+
+	<!--
+	<input type="checkbox" name="custom-fee" value="custom-fee"/>
+	<span data-bind="text: getFormattedPrice()" class="price" style="font-weight: 600"></span>
+	<span data-bind="text: getFeeLabel()"></span>
+	-->
+
 </div>
