@@ -40,12 +40,20 @@ class ShippingInformationManagement
     {
         $customFee = $addressInformation->getExtensionAttributes()->getFee();
         $quote = $this->quoteRepository->getActive($cartId);
+        $totals = $quote->getTotals();
+        $subtotal = $totals['subtotal']->getValue();
         if ($customFee) {
-            $fee = $this->dataHelper->getCustomFee();
+
+            // $fee = $this->dataHelper->getCustomFee();
+            if($customFee == 1)
+                $fee = $subtotal/10;
+            else if($customFee == 2)
+                $fee = $this->dataHelper->getCustomFee();
+
             $quote->setFee($fee);
+
         } else {
             $quote->setFee(NULL);
         }
     }
 }
-
